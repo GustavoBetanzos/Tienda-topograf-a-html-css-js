@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GeoTop México - Equipos Topográficos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>GeoTop México</h1>
+    <button id="toggleCarrito">🛒 Ver Carrito (<span id="contador">0</span>)</button>
+  </header>
+
+  <main id="productos">
+    <!-- Productos se cargan desde JS -->
+  </main>
+
+  <aside id="carrito">
+    <h2>Carrito de Compra</h2>
+    <ul id="listaCarrito"></ul>
+    <p>Total: $<span id="total">0</span> MXN</p>
+    <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+    <button onclick="pagarAhora()" style="margin-top: 10px;">Pagar Ahora</button>
+
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>
