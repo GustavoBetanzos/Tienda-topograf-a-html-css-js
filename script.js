@@ -1,3 +1,4 @@
+// Lista de productos topográficos
 const productos = [
   {
     id: 1,
@@ -39,8 +40,24 @@ const total = document.getElementById("total");
 const contador = document.getElementById("contador");
 const carritoPanel = document.getElementById("carrito");
 const toggleCarrito = document.getElementById("toggleCarrito");
+const inputBuscador = document.getElementById("buscador");
+
+// Mostrar productos al cargar
+mostrarProductos();
+
+// Evento para mostrar u ocultar carrito
+toggleCarrito.onclick = () => {
+  carritoPanel.style.display = carritoPanel.style.display === "block" ? "none" : "block";
+};
+
+// Búsqueda en tiempo real
+inputBuscador.addEventListener("input", () => {
+  const termino = inputBuscador.value.toLowerCase().trim();
+  filtrarProductos(termino);
+});
 
 function mostrarProductos() {
+  contenedorProductos.innerHTML = "";
   productos.forEach(producto => {
     const div = document.createElement("div");
     div.classList.add("producto");
@@ -52,6 +69,27 @@ function mostrarProductos() {
     `;
     contenedorProductos.appendChild(div);
   });
+}
+
+function filtrarProductos(termino) {
+  contenedorProductos.innerHTML = "";
+  const resultados = productos.filter(p => p.nombre.toLowerCase().includes(termino));
+
+  if (resultados.length === 0) {
+    contenedorProductos.innerHTML = `<p style="grid-column: 1 / -1; color: #FFD700;">No se encontraron productos.</p>`;
+  } else {
+    resultados.forEach(producto => {
+      const div = document.createElement("div");
+      div.classList.add("producto");
+      div.innerHTML = `
+        <img src="${producto.img}" alt="${producto.nombre}">
+        <h3>${producto.nombre}</h3>
+        <p>$${producto.precio.toLocaleString()} MXN</p>
+        <button onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
+      `;
+      contenedorProductos.appendChild(div);
+    });
+  }
 }
 
 function agregarAlCarrito(id) {
@@ -74,7 +112,7 @@ function actualizarCarrito() {
     const li = document.createElement("li");
     li.innerHTML = `
       ${item.nombre} - $${item.precio.toLocaleString()} MXN
-      <button onclick="eliminarProducto(${index})" style="margin-left: 10px; background:#ff4d4d;">Eliminar</button>
+      <button onclick="eliminarProducto(${index})" style="margin-left: 10px; background:#ff4d4d; color:white;">Eliminar</button>
     `;
     listaCarrito.appendChild(li);
   });
@@ -100,9 +138,3 @@ function pagarAhora() {
     vaciarCarrito();
   }
 }
-
-toggleCarrito.onclick = () => {
-  carritoPanel.style.display = carritoPanel.style.display === "block" ? "none" : "block";
-};
-
-mostrarProductos();

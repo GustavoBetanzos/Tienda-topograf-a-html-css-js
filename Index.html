@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GeoTop México - Equipos Topográficos</title>
+  <title>GeoTop México - Tienda de Equipo Topográfico</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,17 +12,27 @@
     <button id="toggleCarrito">🛒 Ver Carrito (<span id="contador">0</span>)</button>
   </header>
 
+  <!-- Búsqueda de productos -->
+  <section style="padding: 1rem 2rem; background-color: #1a1a1a;">
+    <input 
+      type="text" 
+      id="buscador" 
+      placeholder="Buscar producto..." 
+      style="width: 100%; max-width: 400px; padding: 10px; font-size: 1rem; border-radius: 5px; border: 1px solid #FFD700;">
+  </section>
+
+  <!-- Lista de productos -->
   <main id="productos">
-    <!-- Productos se cargan desde JS -->
+    <!-- Productos se agregan desde JS -->
   </main>
 
+  <!-- Carrito de compras -->
   <aside id="carrito">
     <h2>Carrito de Compra</h2>
     <ul id="listaCarrito"></ul>
     <p>Total: $<span id="total">0</span> MXN</p>
     <button onclick="vaciarCarrito()">Vaciar Carrito</button>
     <button onclick="pagarAhora()" style="margin-top: 10px;">Pagar Ahora</button>
-
   </aside>
 
   <script src="script.js"></script>

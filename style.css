@@ -97,3 +97,8 @@ aside#carrito {
   list-style: disc;
   margin-left: 1rem;
 }
+
+#carrito button {
+  margin-top: 0.5rem;
+  width: 100%;
+}
